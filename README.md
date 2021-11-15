@@ -24,7 +24,8 @@ User is able to favourite any recipe for later use. The page shows the recipes i
 The profile page shows what recipes the currently logged in user had poster. The card view is shown as 3 in each row. Each card has the image and title that hyperlinks to the recipe page. 
 
 ## Account 
-The Django 
+The Django admin interface, a site administrator is able to view, add, edit, and delete any receipes, comments on the site.
+
 ## What’s contained in each file you created
 **cookbook/recipes/templates/recipes/** 
  - categories.html
@@ -50,7 +51,7 @@ The Django
  - views.py
 
 
-## How to run your application 
+<!-- ## How to run your application 
 
 ## Additional information
 
@@ -59,6 +60,6 @@ The Django
 
 **Export to disk** 
 
-> **Note:** The **Publish now** button is disabled if your file has not been published yet.
+> **Note:** The **Publish now** button is disabled if your file has not been published yet. -->
 
 
