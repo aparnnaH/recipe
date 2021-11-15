@@ -1,0 +1,105 @@
+{% extends "recipes/layout.html" %}
+
+{% block body %}
+
+{% if user.is_authenticated %}
+<h3 style= "margin-top: 5rem ;">{{ listing.title }}</h3>
+
+<ul style="list-style-type:none; padding:0;">
+    <div style="border: 1px solid lightgray; margin: 0px; padding: 20px; border-radius: 10px;">
+        <table style="width: 100%;">
+            <tbody>
+                <tr>
+                    <td style="width:40px;">
+                        <img src="{{ listing.image_url }}" style="width:80%;"/>
+                    </td>
+                    <td style="width: 60%;"  valign="top">
+                        <div>{{ listing.description }}</div>
+
+                        <br>
+
+                        <!-- <div class = "category-label">{{ category }}</div> -->
+                        <div>Posted by: {{ listing.user }}</div>
+
+                        <br>
+
+                        <!-- <img src="https://img.icons8.com/carbon-copy/100/000000/clock--v2.png" style="width:40px;"/> -->
+                        <div>Preperation time: {{ listing.prep_time }}</div>
+                        <div>Cooking time: {{ listing.cook_time }}</div>
+
+                        <br>
+
+                        <div class = "category-label">{{ category }}</div>
+
+                        <br>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</ul>
+
+<br>
+                
+<div id = "ing"><h3>Ingredients:</h3></div>
+<script>
+    var list = '{{ listing.ingredients }}';
+    // var ingred = list.val().split(/\r\n|\n\r|\n|\r/);
+    var ingred = list.split(',');
+    var ing="", i;
+    for (i = 0; i < ingred.length; i++) {
+        ing += "<label class='container-checkbox'>" + ingred[i] + "<input type='checkbox'><span class='checkmark'></span></label>";
+    }
+    document.getElementById("ing").innerHTML += ing ;
+</script>
+
+<br>
+
+<div id = "step"><h3>Steps:<h3></div>
+<script>
+    var list = '{{ listing.steps }}';
+    // var steps = list.val().split(/\r\n|\n|\r/);
+    var steps = list.split('.');
+    var step="<ol class='custom-counter'>", i;
+    for (i = 0; i < steps.length; i++) {
+        step += "<li>" + steps[i] + "</li>"
+    }
+    step += "</ol>"
+    document.getElementById("step").innerHTML += step;
+</script>
+
+<br>
+
+<div class="checkbox">
+    {% if watching %}
+        <a href="{% url 'remove_watchlist' listing.id %}"> Remove from Favourite</a>
+    {% else %}
+        <a href="{% url 'add_watchlist' listing.id %}"> Add to Favourite</a>
+    {% endif %}
+</div>
+
+<br>
+
+<form action="{% url 'listing' listing.id %}" method="post">
+    {% csrf_token %}
+    <h6>Add comment</h6>
+    <textarea class="form-control" aria-label="With textarea" name="comment" style="width:40%; vertical-align: top;"></textarea>
+    <input type="submit" class="btn btn-primary" style="display: inline-block; margin-top: 10px;">
+</form>
+
+<br> 
+<h6>Comments</h6>
+<ul style="list-style-type: none;">
+    
+    {% for comment in comments %}
+    <div style="border: 1px solid lightgray; margin: 10px; padding: 10px; border-radius: 10px; width: 40%;">
+        <li>{{ comment }}</li>
+    </div>
+    {% endfor %}
+</ul>
+
+{% else %}
+<h6>Please login or create an account</h6>
+{% endif %}
+
+{% endblock %}

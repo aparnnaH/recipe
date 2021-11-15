@@ -1,0 +1,57 @@
+{% extends "recipes/layout.html" %}
+
+{% block body %}
+    <h2 style= "margin-top: 5rem ;">Submit Recipe</h2>
+    
+    <form action="{% url 'create_listing' %}" method="post">
+        {% csrf_token %}
+        
+        <h6>Title</h6>
+        {{ listing_form.title }}
+
+        <br><br>
+
+        <h6>Description</h6>
+        {{ listing_form.description }}
+
+        <br><br>
+
+        <h6>Preperation Time</h6>
+        {{ listing_form.prep_time }}
+
+        <br><br>
+
+        <h6>Cook Time</h6>
+        {{ listing_form.cook_time }}
+
+        <br><br>
+
+
+        <h6>Ingredients</h6>
+        {{ listing_form.ingredients }}
+
+        <br><br>
+
+        <h6>Steps</h6>
+        {{ listing_form.steps }}
+
+        <br><br>
+
+        <h6>Image URL</h6>
+        {{ listing_form.image_url }}
+
+        <br><br>
+
+        <h6>Category</h6>
+        <select name="categories">
+            {% for category in categories %}
+                <option value="{{ category.id }}">{{ category }}</option>
+            {% endfor %}
+        </select>
+        
+        <br><br>
+
+        <input type="submit" class="btn btn-primary">
+    </form>
+
+{% endblock %}

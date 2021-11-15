@@ -1,0 +1,105 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <title>{% block title %}Recipes{% endblock %}</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <!-- <link href="{% static 'recipes/category.css' %}" rel="stylesheet"> -->
+         <link href="{% static 'recipes/header.css' %}" rel="stylesheet">
+        <link href="{% static 'recipes/styles.css' %}" rel="stylesheet">
+        
+    </head>
+    <body>
+        <!-- <h1>Recipes</h1> -->
+        <!-- <div>
+            {% if user.is_authenticated %}
+                Signed in as <strong>{{ user.username }}</strong>.
+            {% else %}
+                Not signed in.
+            {% endif %}
+        </div> -->
+        <div class="site-mobile-menu">
+      <div class="site-mobile-menu-header">
+        <div class="site-mobile-menu-close mt-3">
+          <span class="icon-close2 js-menu-toggle"></span>
+        </div>
+      </div>
+      <div class="site-mobile-menu-body"></div>
+    </div>
+    
+    <header class="site-navbar sticky" role="banner">
+
+      <div class="container">
+        <div class="row align-items-center">
+          
+          <div class="col-11 col-xl-2">
+            <h1 class="mb-0 site-logo"><a href="{% url 'index' %}" class="mb-0">Recipes</a></h1>
+          </div>
+          <div class="col-12 col-md-10 d-none d-xl-block">
+            <nav class="site-navigation position-relative text-right sticky" role="navigation">
+
+              <ul class="site-menu js-clone-nav mr-auto d-none d-lg-block">
+                <li class="active"><a href="{% url 'index' %}"><span>Home</span></a></li>
+                <li><a href="{% url 'categories' %}"><span>Categories</span></a></li>
+                {% if user.is_authenticated %}
+                  <li><a href="{% url 'create_listing' %}"><span>Submit Recipe</span></a></li>
+                  <li><a href="{% url 'watchlist' user.id %}"><span>Favourite</span></a></li>
+                  <li><a href="{% url 'profile' %}"><span>Profile</span></a></li>
+                  <li><a href="{% url 'logout' %}"><span>Log Out</span></a></li>
+                {% else %}
+                  <li><a href="{% url 'login' %}"><span>Log In</span></a></li>
+                  <li><a href="{% url 'register' %}"><span>Register</span></a></li>
+                {% endif %}
+              </ul>
+            </nav>
+          </div>
+
+          <div class="d-inline-block d-xl-none ml-md-0 mr-auto py-3" style="position: relative; top: 3px;"><a href="#" class="site-menu-toggle js-menu-toggle text-white"><span class="icon-menu h3"></span></a></div>
+
+          </div>
+
+        </div>
+      </div>
+      <!-- <hr> -->
+      
+    </header>
+
+   <!--  <div class="hero" style="background-image: url('https://www.becel.ca/-/media/project/upfield/brands/becel-ca/becel-canada/assets/articles/live-well/wellness/article-substitutions-header.jpg');"></div> -->
+        <!-- <ul class="nav">
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'index' %}">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'categories' %}">Categories</a>
+            </li>
+            {% if user.is_authenticated %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'create_listing' %}">Submit Recipe</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'watchlist' user.id %}">Favourite</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'profile' %}">Profile</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'logout' %}">Log Out</a>
+                </li>
+            {% else %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'login' %}">Log In</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'register' %}">Register</a>
+                </li>
+            {% endif %}
+        </ul> -->
+
+        {% block body %}
+        {% endblock %}
+    </body>
+</html>
