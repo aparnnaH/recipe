@@ -1,7 +1,7 @@
 ﻿# Recipe Website
 
 ## Home
-User is shown all recipes listed. 
+The receipes are displayed in an image card view with description on the side that mentions the title, description, category. 
 
 ## Categories
 The recipe are sorted by the following categories (Breakfast, Lunch, Dinner, Dessert). Using the dropdown menu the user is able to sort based on the desired category. The recipe is shown in by card view with the image, name, description, posted by whom. If the title of the recipe is clicked it will direct the user to the recipe page.   
